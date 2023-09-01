@@ -9,7 +9,7 @@ import java.awt.Color;
 
 public class Vehiculo {
 private String Marca;
-private Color color;
+private String color;
 private String Modelo;
 private String año;
 private double precio;
@@ -18,7 +18,7 @@ private int id;
     public Vehiculo() {
     }
 
-    public Vehiculo(String Marca, Color color, String Modelo, String año, double precio, int id) {
+    public Vehiculo(String Marca, String color, String Modelo, String año, double precio, int id) {
         this.Marca = Marca;
         this.color = color;
         this.Modelo = Modelo;
@@ -31,14 +31,8 @@ private int id;
 
 
 
-    public Vehiculo(String Marca, Color color, String Modelo, String año, double precio) {
-        this.Marca = Marca;
-        this.color = color;
-        this.Modelo = Modelo;
-        this.año = año;
-        this.precio = precio;
-        
-    }
+   
+    
 
     public String getMarca() {
         return Marca;
@@ -48,11 +42,11 @@ private int id;
         this.Marca = Marca;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
