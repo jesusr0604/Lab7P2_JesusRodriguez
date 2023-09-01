@@ -1,0 +1,14 @@
+[
+	Luigi
+	333
+	Muerto
+	8
+	5555.0
+]
+[
+	Afton
+	98
+	Muerto
+	9
+	565.0
+]
