@@ -88,8 +88,9 @@ public class principal extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree2 = new javax.swing.JTree();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        FinalizarD = new javax.swing.JButton();
+        UPTREE = new javax.swing.JButton();
+        ADMINUT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -466,11 +467,20 @@ public class principal extends javax.swing.JFrame {
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTree1);
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("ADMIN");
+        jTree2.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jTree2);
 
-        jButton2.setText("jButton2");
+        FinalizarD.setText("Finalizar Dia");
+        FinalizarD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FinalizarDMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        UPTREE.setText("Actualizar Arbol");
+
+        ADMINUT.setText("Actualizar Arbol Del Admin");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -480,11 +490,12 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(71, 71, 71))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(UPTREE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FinalizarD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ADMINUT))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,10 +505,12 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton2)
-                .addGap(106, 106, 106)
-                .addComponent(jButton3)
+                .addGap(43, 43, 43)
+                .addComponent(FinalizarD, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UPTREE, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ADMINUT, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -743,11 +756,62 @@ public class principal extends javax.swing.JFrame {
             String mr= car.getMarca();
             sell.add(new Venta(vs, cl, pr, mr));
             JOptionPane.showMessageDialog(null, "Venta hecha");
+             File file = null;
+        FileWriter fr = null;
+        BufferedWriter br = null;
+        try {
+            file= new File("./Ventas.txt");
+            fr= new FileWriter(file,true);
+            br= new BufferedWriter(fr);
+            String mike= "[\n"
+                    +"\t"+cl+"\n"
+                    +"\t"+vs+"\n"  
+                    +"\t"+mr+"\n"  
+                    +"\t"+vs+"\n]\n";
+            br.write(mike);
+            br.flush();
+            fr.close();
+            br.close();
             
+        } catch (Exception e) {
+        e.printStackTrace();
         }
+            
+        }else{
+             JOptionPane.showMessageDialog(null, "Papo");
+         }
             
             
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void FinalizarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarDMouseClicked
+       try {
+              File file = null;
+        FileWriter fr = null;
+        BufferedWriter br = null;
+            file= new File("./Ventas.txt");
+            fr= new FileWriter(file,true);
+            br= new BufferedWriter(fr);
+            String mike= "";
+            for (Venta vst : sell) {
+               mike= "[\n"
+                    +"\t"+vst.getCarro()+"\n"
+                    +"\t"+vst.getVendedor1()+"\n"  
+                    +"\t"+vst.getComprador1()+"\n"  
+                    +"\t"+vst.getCostotrans()+"\n]\n";
+           
+               
+           }
+            
+            br.write(mike);
+            br.flush();
+            fr.close();
+            br.close();
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+    }//GEN-LAST:event_FinalizarDMouseClicked
 
     
     
@@ -820,6 +884,7 @@ public class principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADDCAR;
+    private javax.swing.JButton ADMINUT;
     private javax.swing.JButton AgregarC;
     private javax.swing.JButton AgregarV;
     private javax.swing.JTextField Año;
@@ -830,6 +895,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField Color;
     private javax.swing.JTextField DineroV;
     private javax.swing.JTextField EdadCL;
+    private javax.swing.JButton FinalizarD;
     private javax.swing.JTextField Marca;
     private javax.swing.JTextField Modelo;
     private javax.swing.JTextField NombreV;
@@ -837,10 +903,9 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField Precio;
     private javax.swing.JTextField ProfCL;
     private javax.swing.JTextField Sueldo;
+    private javax.swing.JButton UPTREE;
     private javax.swing.JComboBox<String> Vendedores;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
