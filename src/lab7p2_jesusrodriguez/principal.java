@@ -461,6 +461,13 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ColorMouseClicked
 
     private void ADDCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDCARMouseClicked
+        if (Marca.getText().isEmpty()||Modelo.getText().isEmpty()|| Año.getText().isEmpty()|| Precio.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Esta Vacio");
+        
+        }else{
+            
+           
+        
         String marca=  Marca.getText();
         String modelo= Modelo.getText();
         String year= Año.getText();
@@ -502,7 +509,7 @@ public class principal extends javax.swing.JFrame {
         Color.setBackground(new Color(255,255,255));
         Precio.setText("");
         
-        
+        }
         
         
     }//GEN-LAST:event_ADDCARMouseClicked
@@ -514,6 +521,30 @@ public class principal extends javax.swing.JFrame {
        double sueldo= Double.parseDouble(Sueldo.getText());
        String prof= ProfCL.getText();
        client.add(new Cliente(Nombre,old,prof,cars,sueldo));
+       
+       File file = null;
+        FileWriter fr = null;
+        BufferedWriter br = null;
+        try {
+            file= new File("./Clientes.txt");
+            fr= new FileWriter(file,true);
+            br= new BufferedWriter(fr);
+            String mike= "[\n"
+                    +"\t"+Nombre+"\n"
+                    +"\t"+old+"\n"
+                    +"\t"+prof+"\n"
+                    +"\t"+cars+"\n"
+                    +"\t"+sueldo+"\n]\n";
+            br.write(mike);
+            br.flush();
+            fr.close();
+            br.close();
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+       
+       
        
        Nombrecl.setText("");
        EdadCL.setText("");
@@ -528,6 +559,27 @@ public class principal extends javax.swing.JFrame {
         String Nombre= NombreV.getText();
         int cantidad= Integer.parseInt(CantidadV.getText());
         double dinero= Double.parseDouble(DineroV.getText());
+        
+        File file = null;
+        FileWriter fr = null;
+        BufferedWriter br = null;
+        try {
+            file= new File("./Vendedores.txt");
+            fr= new FileWriter(file,true);
+            br= new BufferedWriter(fr);
+            String mike= "[\n"
+                    +"\t"+Nombre+"\n"
+                    +"\t"+cantidad+"\n"  
+                    +"\t"+dinero+"\n]\n";
+            br.write(mike);
+            br.flush();
+            fr.close();
+            br.close();
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+        
         
         seller.add(new Vendedor(Nombre,cantidad,dinero));
         NombreV.setText("");
