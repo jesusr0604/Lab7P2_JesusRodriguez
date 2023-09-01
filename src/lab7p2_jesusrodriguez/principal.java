@@ -5,7 +5,14 @@
 package lab7p2_jesusrodriguez;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,9 +20,12 @@ import javax.swing.JColorChooser;
  */
 public class principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form principal
-     */
+   ArrayList<Vehiculo> cars= new ArrayList();
+   ArrayList<Cliente> client= new ArrayList();
+   ArrayList<Vendedor> seller= new ArrayList();
+   int cont =1;
+    
+    
     public principal() {
         initComponents();
     }
@@ -32,23 +42,25 @@ public class principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
+        NombreV = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        CantidadV = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        DineroV = new javax.swing.JTextField();
+        AgregarV = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        Nombrecl = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        EdadCL = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        ProfCL = new javax.swing.JTextField();
+        CanCar = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        Sueldo = new javax.swing.JTextField();
+        AgregarC = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Marca = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -60,7 +72,7 @@ public class principal extends javax.swing.JFrame {
         Precio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Color = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ADDCAR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,27 +80,34 @@ public class principal extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        NombreV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                NombreVActionPerformed(evt);
             }
         });
 
         jLabel6.setText("Nombre");
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        CantidadV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                CantidadVActionPerformed(evt);
             }
         });
 
-        jLabel7.setText("Cantidad");
+        jLabel7.setText("Cantidad de carros vendidos");
 
         jLabel8.setText("Dinero Generado");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        DineroV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                DineroVActionPerformed(evt);
+            }
+        });
+
+        AgregarV.setText("Agergar Vendedor");
+        AgregarV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarVMouseClicked(evt);
             }
         });
 
@@ -99,13 +118,19 @@ public class principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(383, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CantidadV, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6)
+                            .addComponent(NombreV, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(DineroV, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(AgregarV, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,33 +138,39 @@ public class principal extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NombreV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CantidadV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DineroV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(AgregarV, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
 
         jTabbedPane1.addTab("Vendedor", jPanel4);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 0));
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        Nombrecl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                NombreclActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Nombre");
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        EdadCL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                EdadCLActionPerformed(evt);
             }
         });
 
@@ -147,15 +178,15 @@ public class principal extends javax.swing.JFrame {
 
         jLabel11.setText("Profesion");
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        ProfCL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                ProfCLActionPerformed(evt);
             }
         });
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        CanCar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                CanCarActionPerformed(evt);
             }
         });
 
@@ -163,9 +194,16 @@ public class principal extends javax.swing.JFrame {
 
         jLabel13.setText("Sueldo");
 
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        Sueldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                SueldoActionPerformed(evt);
+            }
+        });
+
+        AgregarC.setText("Agregar Cliente");
+        AgregarC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarCMouseClicked(evt);
             }
         });
 
@@ -177,23 +215,26 @@ public class principal extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(383, Short.MAX_VALUE))
+                        .addComponent(jLabel11)
+                        .addContainerGap(484, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EdadCL, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Nombrecl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CanCar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(176, 176, 176))))
+                            .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(176, 176, 176))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(ProfCL, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AgregarC, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,24 +244,26 @@ public class principal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Nombrecl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EdadCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CanCar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ProfCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AgregarC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel2);
@@ -267,7 +310,12 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Agregar Carro");
+        ADDCAR.setText("Agregar Carro");
+        ADDCAR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ADDCARMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -292,7 +340,7 @@ public class principal extends javax.swing.JFrame {
                             .addComponent(Color, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ADDCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -321,7 +369,7 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ADDCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Año, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -375,43 +423,127 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PrecioActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void NombreVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_NombreVActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void CantidadVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_CantidadVActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void DineroVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DineroVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_DineroVActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void NombreclActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreclActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_NombreclActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void EdadCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EdadCLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_EdadCLActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void ProfCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfCLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_ProfCLActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void CanCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanCarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_CanCarActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void SueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SueldoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_SueldoActionPerformed
 
     private void ColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ColorMouseClicked
       Color a= new Color(0,0,0);
         Color.setBackground(JColorChooser.showDialog(this, "Agarre un color", a));
     }//GEN-LAST:event_ColorMouseClicked
 
+    private void ADDCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDCARMouseClicked
+        String marca=  Marca.getText();
+        String modelo= Modelo.getText();
+        String year= Año.getText();
+        double price= Double.parseDouble(Precio.getText());
+        Color colors= Color.getBackground();
+        cont++;
+        
+        
+        cars.add(new Vehiculo(marca,colors,modelo,year,price,cont));
+        JOptionPane.showMessageDialog(null, "Agregado Compadre"
+                + "");
+        
+        File file = null;
+        FileWriter fr = null;
+        BufferedWriter br = null;
+        try {
+            file= new File("./Cars.txt");
+            fr= new FileWriter(file,true);
+            br= new BufferedWriter(fr);
+            String mike= "[\n"
+                    +"\t"+marca+"\n"
+                    +"\t"+modelo+"\n"
+                    +"\t"+year+"\n"
+                    +"\t"+price+"\n]\n";
+            br.write(mike);
+            br.flush();
+            fr.close();
+            br.close();
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+        
+        
+        
+        Marca.setText("");
+        Modelo.setText("");
+        Año.setText("");
+        Color.setBackground(new Color(255,255,255));
+        Precio.setText("");
+        
+        
+        
+        
+    }//GEN-LAST:event_ADDCARMouseClicked
+
+    private void AgregarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarCMouseClicked
+       String Nombre= Nombrecl.getText();
+       int old= Integer.parseInt(EdadCL.getText());
+       int cars= Integer.parseInt(CanCar.getText());
+       double sueldo= Double.parseDouble(Sueldo.getText());
+       String prof= ProfCL.getText();
+       client.add(new Cliente(Nombre,old,prof,cars,sueldo));
+       
+       Nombrecl.setText("");
+       EdadCL.setText("");
+       CanCar.setText("");
+       Sueldo.setText("");
+       ProfCL.setText("");
+       
+       
+    }//GEN-LAST:event_AgregarCMouseClicked
+
+    private void AgregarVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarVMouseClicked
+        String Nombre= NombreV.getText();
+        int cantidad= Integer.parseInt(CantidadV.getText());
+        double dinero= Double.parseDouble(DineroV.getText());
+        
+        seller.add(new Vendedor(Nombre,cantidad,dinero));
+        NombreV.setText("");
+        CantidadV.setText("");
+        DineroV.setText("");
+        
+        
+    }//GEN-LAST:event_AgregarVMouseClicked
+
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -448,12 +580,22 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ADDCAR;
+    private javax.swing.JButton AgregarC;
+    private javax.swing.JButton AgregarV;
     private javax.swing.JTextField Año;
+    private javax.swing.JTextField CanCar;
+    private javax.swing.JTextField CantidadV;
     private javax.swing.JButton Color;
+    private javax.swing.JTextField DineroV;
+    private javax.swing.JTextField EdadCL;
     private javax.swing.JTextField Marca;
     private javax.swing.JTextField Modelo;
+    private javax.swing.JTextField NombreV;
+    private javax.swing.JTextField Nombrecl;
     private javax.swing.JTextField Precio;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField ProfCL;
+    private javax.swing.JTextField Sueldo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,13 +614,5 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
