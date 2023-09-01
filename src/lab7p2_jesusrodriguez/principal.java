@@ -73,6 +73,10 @@ public class principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Color = new javax.swing.JButton();
         ADDCAR = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -376,6 +380,44 @@ public class principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Carro", jPanel3);
 
+        jPanel5.setBackground(new java.awt.Color(153, 0, 204));
+        jPanel5.setForeground(new java.awt.Color(204, 204, 0));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Venta", jPanel5);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -515,7 +557,14 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ADDCARMouseClicked
 
     private void AgregarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarCMouseClicked
-       String Nombre= Nombrecl.getText();
+        if (Nombrecl.getText().isEmpty()|| EdadCL.getText().isEmpty()|| CanCar.getText().isEmpty()|| Sueldo.getText().isEmpty()|| ProfCL.getText().isEmpty()) {
+            
+        
+        JOptionPane.showMessageDialog(null, "Esta Vacio");
+        
+        }else{
+        
+        String Nombre= Nombrecl.getText();
        int old= Integer.parseInt(EdadCL.getText());
        int cars= Integer.parseInt(CanCar.getText());
        double sueldo= Double.parseDouble(Sueldo.getText());
@@ -552,10 +601,18 @@ public class principal extends javax.swing.JFrame {
        Sueldo.setText("");
        ProfCL.setText("");
        
-       
+        }
     }//GEN-LAST:event_AgregarCMouseClicked
 
     private void AgregarVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarVMouseClicked
+        if (NombreV.getText().isEmpty()|| CantidadV.getText().isEmpty()|| DineroV.getText().isEmpty()) {
+            
+        
+        JOptionPane.showMessageDialog(null, "Esta Vacio");
+        
+        }else{
+        
+        
         String Nombre= NombreV.getText();
         int cantidad= Integer.parseInt(CantidadV.getText());
         double dinero= Double.parseDouble(DineroV.getText());
@@ -586,7 +643,7 @@ public class principal extends javax.swing.JFrame {
         CantidadV.setText("");
         DineroV.setText("");
         
-        
+        }
     }//GEN-LAST:event_AgregarVMouseClicked
 
     
@@ -648,6 +705,9 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField Precio;
     private javax.swing.JTextField ProfCL;
     private javax.swing.JTextField Sueldo;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -665,6 +725,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
