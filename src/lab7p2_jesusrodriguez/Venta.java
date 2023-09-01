@@ -11,4 +11,54 @@ private String comprador1;
 private double costotrans;
 private String carro;
 
+    public Venta(String vendedor1, String comprador1, double costotrans, String carro) {
+        this.vendedor1 = vendedor1;
+        this.comprador1 = comprador1;
+        this.costotrans = costotrans;
+        this.carro = carro;
+    }
+
+    public Venta() {
+    }
+
+    public String getVendedor1() {
+        return vendedor1;
+    }
+
+    public void setVendedor1(String vendedor1) {
+        this.vendedor1 = vendedor1;
+    }
+
+    public String getComprador1() {
+        return comprador1;
+    }
+
+    public void setComprador1(String comprador1) {
+        this.comprador1 = comprador1;
+    }
+
+    public double getCostotrans() {
+        return costotrans;
+    }
+
+    public void setCostotrans(double costotrans) {
+        this.costotrans = costotrans;
+    }
+
+    public String getCarro() {
+        return carro;
+    }
+
+    public void setCarro(String carro) {
+        this.carro = carro;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "costotrans=" + costotrans + ", carro=" + carro + '}';
+    }
+
+
+
+
 }

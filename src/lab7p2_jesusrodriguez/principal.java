@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
@@ -74,9 +75,10 @@ public class principal extends javax.swing.JFrame {
         Color = new javax.swing.JButton();
         ADDCAR = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        Carros = new javax.swing.JComboBox<>();
+        Vendedores = new javax.swing.JComboBox<>();
+        Cliente = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -383,11 +385,12 @@ public class principal extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(153, 0, 204));
         jPanel5.setForeground(new java.awt.Color(204, 204, 0));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton1.setText("HACER VENTA");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -395,25 +398,27 @@ public class principal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Carros, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                    .addComponent(Carros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Venta", jPanel5);
@@ -519,6 +524,8 @@ public class principal extends javax.swing.JFrame {
         
         
         cars.add(new Vehiculo(marca,colors,modelo,year,price,cont));
+        Carros.setModel(updateComboboxCAR());
+        
         JOptionPane.showMessageDialog(null, "Agregado Compadre"
                 + "");
         
@@ -570,6 +577,7 @@ public class principal extends javax.swing.JFrame {
        double sueldo= Double.parseDouble(Sueldo.getText());
        String prof= ProfCL.getText();
        client.add(new Cliente(Nombre,old,prof,cars,sueldo));
+       Cliente.setModel(updateComboboxCliente());
        
        File file = null;
         FileWriter fr = null;
@@ -616,7 +624,8 @@ public class principal extends javax.swing.JFrame {
         String Nombre= NombreV.getText();
         int cantidad= Integer.parseInt(CantidadV.getText());
         double dinero= Double.parseDouble(DineroV.getText());
-        
+         seller.add(new Vendedor(Nombre,cantidad,dinero));
+         Vendedores.setModel(updateComboboxV());
         File file = null;
         FileWriter fr = null;
         BufferedWriter br = null;
@@ -638,7 +647,7 @@ public class principal extends javax.swing.JFrame {
         }
         
         
-        seller.add(new Vendedor(Nombre,cantidad,dinero));
+        
         NombreV.setText("");
         CantidadV.setText("");
         DineroV.setText("");
@@ -646,10 +655,43 @@ public class principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AgregarVMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+         
+            
+            
+    }//GEN-LAST:event_jButton1MouseClicked
+
     
     
     
     
+    public DefaultComboBoxModel updateComboboxCAR(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Vehiculo Cars : cars) {
+                model.addElement(Cars);
+
+            }
+    return model;
+    }
+    
+     public DefaultComboBoxModel updateComboboxCliente(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Cliente c : client) {
+                model.addElement(c);
+
+            }
+    return model;
+    }
+     
+     
+      public DefaultComboBoxModel updateComboboxV(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Vendedor v : seller) {
+                model.addElement(v);
+
+            }
+    return model;
+    }
     
     
     
@@ -695,6 +737,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField Año;
     private javax.swing.JTextField CanCar;
     private javax.swing.JTextField CantidadV;
+    private javax.swing.JComboBox<String> Carros;
+    private javax.swing.JComboBox<String> Cliente;
     private javax.swing.JButton Color;
     private javax.swing.JTextField DineroV;
     private javax.swing.JTextField EdadCL;
@@ -705,9 +749,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField Precio;
     private javax.swing.JTextField ProfCL;
     private javax.swing.JTextField Sueldo;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> Vendedores;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

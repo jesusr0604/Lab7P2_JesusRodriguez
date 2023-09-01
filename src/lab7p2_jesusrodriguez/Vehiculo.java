@@ -92,7 +92,7 @@ private int id;
     
     @Override
     public String toString() {
-        return  "Marca=" + Marca + ", color=" + color + ", Modelo=" + Modelo + ", a\u00f1o=" + año + ", precio=" + precio+ "ID "+id;
+        return   Marca ;
     }
     
     

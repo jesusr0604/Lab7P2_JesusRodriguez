@@ -48,7 +48,7 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return  "Nombre=" + Nombre + ", cantidad=" + cantidad + ", generado=" + generado ;
+        return  Nombre  ;
     }
     
     
