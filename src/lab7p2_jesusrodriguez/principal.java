@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
@@ -891,7 +892,21 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_FinalizarDMouseClicked
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseClicked
-
+        FileWriter fw= null;
+        BufferedWriter bw= null;
+        if (JOptionPane.showConfirmDialog(this, "Desea Guardar los cambios","Confirm",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                fw= new FileWriter(ar,false);
+                bw= new BufferedWriter(fw);
+                bw.write(jTextArea1.getText());
+                bw.flush();
+                fw.close();
+                bw.close();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_ConfirmMouseClicked
 
     private void EditJsonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditJsonMouseClicked
@@ -960,6 +975,77 @@ public class principal extends javax.swing.JFrame {
 
         }
         return model;
+    }
+    
+    
+    public static ArrayList<ArrayList<String>> obtenerlista(File file)throws IOException{
+        ArrayList<ArrayList<String>> listas = new ArrayList<>();
+        ArrayList<String> ListaActual= null;
+        BufferedReader br = null;
+        FileReader fr= null;
+        try {
+            fr= new FileReader(file);
+            br= new BufferedReader(fr);
+            String L;
+            while ((L=br.readLine())!=null) {
+                if (L.contains("[")) {
+                    ListaActual= new ArrayList<>();
+                    
+                    
+                    
+                }else if (L.contains("]")) {
+                    if (ListaActual!=null) {
+                        listas.add(ListaActual);
+                    }
+                    
+                }else if (ListaActual!= null && ! L.trim().isEmpty()) {
+                    ListaActual.add(L.trim());
+                }
+                
+            }
+        } catch (Exception e) {
+        }
+        return listas;
+        
+    }
+    
+    
+    
+    public void inicListacar(){
+        try{
+            File file= new File ("./Cars.txt");
+            ArrayList<ArrayList<String>>Listas= obtenerlista(file);
+            for (ArrayList<String> t : Listas) {
+                if (t.size()==6) {
+                    String marca= t.get(0);
+                    String color = t.get(1);
+                    String modelo= t.get(2);
+                    String año = String.valueOf(t.get(3));
+                    int id= Integer.parseInt(t.get(4));
+                    double pr= Double.parseDouble(t.get(5));
+                    cars.add(new Vehiculo(marca, color, modelo, año, pr, id));
+                    
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    public void ListasVehiculo(){
+        ArrayList<ArrayList<Vehiculo>> ArreglosV= new ArrayList();
+        
+    }
+    
+     public void ListasCliente(){
+        ArrayList<ArrayList<Cliente>> ArreglosCL= new ArrayList();
+        
+    }
+     
+      public void ListasVendedor(){
+        ArrayList<ArrayList<Vendedor>> ArreglosVE= new ArrayList();
+        
     }
 
     /**
