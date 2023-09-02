@@ -13,7 +13,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -21,15 +23,14 @@ import javax.swing.JOptionPane;
  */
 public class principal extends javax.swing.JFrame {
 
-   ArrayList<Vehiculo> cars= new ArrayList();
-   ArrayList<Cliente> client= new ArrayList();
-   ArrayList<Vendedor> seller= new ArrayList();
-   ArrayList <Venta> sell= new ArrayList();
-   File ar= null;
-   
-   int cont =1;
-    
-    
+    ArrayList<Vehiculo> cars = new ArrayList();
+    ArrayList<Cliente> client = new ArrayList();
+    ArrayList<Vendedor> seller = new ArrayList();
+    ArrayList<Venta> sell = new ArrayList();
+    File ar = null;
+
+    int cont = 1;
+
     public principal() {
         initComponents();
     }
@@ -677,240 +678,253 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_SueldoActionPerformed
 
     private void ADDCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDCARMouseClicked
-        if (Marca.getText().isEmpty()||Modelo.getText().isEmpty()|| Año.getText().isEmpty()|| Precio.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Esta Vacio");
-        
-        }else{
-            
-           
-        
-        String marca=  Marca.getText();
-        String modelo= Modelo.getText();
-        String year= Año.getText();
-        double price= Double.parseDouble(Precio.getText());
-        String colors= Color.getText();
-        cont++;
-        
-        
-        cars.add(new Vehiculo(marca,colors,modelo,year,price,cont));
-        Carros.setModel(updateComboboxCAR());
-        
-        JOptionPane.showMessageDialog(null, "Agregado Compadre"
-                + "");
-        
-        File file = null;
-        FileWriter fr = null;
-        BufferedWriter br = null;
-        try {
-            file= new File("./Cars.txt");
-            fr= new FileWriter(file,true);
-            br= new BufferedWriter(fr);
-            String mike= "[\n"
-                    +"\t"+marca+"\n"
-                    +"\t"+modelo+"\n"
-                    +"\t"+year+"\n"
-                    +"\t"+price+"\n];\n";
-            br.write(mike);
-            br.flush();
-            fr.close();
-            br.close();
-            
-        } catch (Exception e) {
-        e.printStackTrace();
+        if (Marca.getText().isEmpty() || Modelo.getText().isEmpty() || Año.getText().isEmpty() || Precio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Esta Vacio");
+
+        } else {
+
+            String marca = Marca.getText();
+            String modelo = Modelo.getText();
+            String year = Año.getText();
+            double price = Double.parseDouble(Precio.getText());
+            String colors = Color.getText();
+            cont++;
+
+            cars.add(new Vehiculo(marca, colors, modelo, year, price, cont));
+            Carros.setModel(updateComboboxCAR());
+
+            JOptionPane.showMessageDialog(null, "Agregado Compadre"
+                    + "");
+
+            File file = null;
+            FileWriter fr = null;
+            BufferedWriter br = null;
+            try {
+                file = new File("./Cars.txt");
+                fr = new FileWriter(file, true);
+                br = new BufferedWriter(fr);
+                String mike = "[\n"
+                        + "\t" + marca + "\n"
+                        + "\t" + modelo + "\n"
+                        + "\t" + year + "\n"
+                        + "\t" + price + "\n];\n";
+                br.write(mike);
+                br.flush();
+                fr.close();
+                br.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Marca.setText("");
+            Modelo.setText("");
+            Año.setText("");
+            Color.setText("");
+            Precio.setText("");
+
         }
-        
-        
-        
-        Marca.setText("");
-        Modelo.setText("");
-        Año.setText("");
-        Color.setText("");
-        Precio.setText("");
-        
-        }
-        
-        
+
+
     }//GEN-LAST:event_ADDCARMouseClicked
 
     private void AgregarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarCMouseClicked
-        if (Nombrecl.getText().isEmpty()|| EdadCL.getText().isEmpty()|| CanCar.getText().isEmpty()|| Sueldo.getText().isEmpty()|| ProfCL.getText().isEmpty()) {
-            
-        
-        JOptionPane.showMessageDialog(null, "Esta Vacio");
-        
-        }else{
-        
-        String Nombre= Nombrecl.getText();
-       int old= Integer.parseInt(EdadCL.getText());
-       int cars= Integer.parseInt(CanCar.getText());
-       double sueldo= Double.parseDouble(Sueldo.getText());
-       String prof= ProfCL.getText();
-       client.add(new Cliente(Nombre,old,prof,cars,sueldo));
-       JOptionPane.showMessageDialog(null, "Cliente Agregado");
-       Cliente.setModel(updateComboboxCliente());
-       
-       File file = null;
-        FileWriter fr = null;
-        BufferedWriter br = null;
-        try {
-            file= new File("./Clientes.txt");
-            fr= new FileWriter(file,true);
-            br= new BufferedWriter(fr);
-            String mike= "[\n"
-                    +"\t"+Nombre+"\n"
-                    +"\t"+old+"\n"
-                    +"\t"+prof+"\n"
-                    +"\t"+cars+"\n"
-                    +"\t"+sueldo+"\n];\n";
-            br.write(mike);
-            br.flush();
-            fr.close();
-            br.close();
-            
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-       
-       
-       
-       Nombrecl.setText("");
-       EdadCL.setText("");
-       CanCar.setText("");
-       Sueldo.setText("");
-       ProfCL.setText("");
-       
+        if (Nombrecl.getText().isEmpty() || EdadCL.getText().isEmpty() || CanCar.getText().isEmpty() || Sueldo.getText().isEmpty() || ProfCL.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Esta Vacio");
+
+        } else {
+
+            String Nombre = Nombrecl.getText();
+            int old = Integer.parseInt(EdadCL.getText());
+            int cars = Integer.parseInt(CanCar.getText());
+            double sueldo = Double.parseDouble(Sueldo.getText());
+            String prof = ProfCL.getText();
+            client.add(new Cliente(Nombre, old, prof, cars, sueldo));
+            JOptionPane.showMessageDialog(null, "Cliente Agregado");
+            Cliente.setModel(updateComboboxCliente());
+
+            File file = null;
+            FileWriter fr = null;
+            BufferedWriter br = null;
+            try {
+                file = new File("./Clientes.txt");
+                fr = new FileWriter(file, true);
+                br = new BufferedWriter(fr);
+                String mike = "[\n"
+                        + "\t" + Nombre + "\n"
+                        + "\t" + old + "\n"
+                        + "\t" + prof + "\n"
+                        + "\t" + cars + "\n"
+                        + "\t" + sueldo + "\n];\n";
+                br.write(mike);
+                br.flush();
+                fr.close();
+                br.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Nombrecl.setText("");
+            EdadCL.setText("");
+            CanCar.setText("");
+            Sueldo.setText("");
+            ProfCL.setText("");
+
         }
     }//GEN-LAST:event_AgregarCMouseClicked
 
     private void AgregarVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarVMouseClicked
-        if (NombreV.getText().isEmpty()|| CantidadV.getText().isEmpty()|| DineroV.getText().isEmpty()) {
-            
-        
-        JOptionPane.showMessageDialog(null, "Esta Vacio");
-        
-        }else{
-        
-        
-        String Nombre= NombreV.getText();
-        int cantidad= Integer.parseInt(CantidadV.getText());
-        double dinero= Double.parseDouble(DineroV.getText());
-         seller.add(new Vendedor(Nombre,cantidad,dinero));
-         JOptionPane.showMessageDialog(null, "Vendedor agregado");
-         Vendedores.setModel(updateComboboxV());
-        File file = null;
-        FileWriter fr = null;
-        BufferedWriter br = null;
-        try {
-            file= new File("./Vendedores.txt");
-            fr= new FileWriter(file,true);
-            br= new BufferedWriter(fr);
-            String mike= "[\n"
-                    +"\t"+Nombre+"\n"
-                    +"\t"+cantidad+"\n"  
-                    +"\t"+dinero+"\n];\n";
-            br.write(mike);
-            br.flush();
-            fr.close();
-            br.close();
-            
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        
-        
-        
-        NombreV.setText("");
-        CantidadV.setText("");
-        DineroV.setText("");
-        
+        if (NombreV.getText().isEmpty() || CantidadV.getText().isEmpty() || DineroV.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Esta Vacio");
+
+        } else {
+
+            String Nombre = NombreV.getText();
+            int cantidad = Integer.parseInt(CantidadV.getText());
+            double dinero = Double.parseDouble(DineroV.getText());
+            seller.add(new Vendedor(Nombre, cantidad, dinero));
+            JOptionPane.showMessageDialog(null, "Vendedor agregado");
+            Vendedores.setModel(updateComboboxV());
+            File file = null;
+            FileWriter fr = null;
+            BufferedWriter br = null;
+            try {
+                file = new File("./Vendedores.txt");
+                fr = new FileWriter(file, true);
+                br = new BufferedWriter(fr);
+                String mike = "[\n"
+                        + "\t" + Nombre + "\n"
+                        + "\t" + cantidad + "\n"
+                        + "\t" + dinero + "\n];\n";
+                br.write(mike);
+                br.flush();
+                fr.close();
+                br.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            NombreV.setText("");
+            CantidadV.setText("");
+            DineroV.setText("");
+
         }
     }//GEN-LAST:event_AgregarVMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         if (Cliente.getSelectedIndex()>=0 || Vendedores.getSelectedIndex()>=0|| Carros.getSelectedIndex()>=0) {
-            Cliente cliente= client.get(Cliente.getSelectedIndex());
-            Vendedor vendedors= seller.get(Vendedores.getSelectedIndex());
-            Vehiculo car= cars.get(Carros.getSelectedIndex());
-            String cl= cliente.getNombre();
-            String vs= vendedors.getNombre();
-            double pr= car.getPrecio();
-            String mr= car.getMarca();
+        if (Cliente.getSelectedIndex() >= 0 || Vendedores.getSelectedIndex() >= 0 || Carros.getSelectedIndex() >= 0) {
+            Cliente cliente = client.get(Cliente.getSelectedIndex());
+            Vendedor vendedors = seller.get(Vendedores.getSelectedIndex());
+            Vehiculo car = cars.get(Carros.getSelectedIndex());
+            String cl = cliente.getNombre();
+            String vs = vendedors.getNombre();
+            double pr = car.getPrecio();
+            String mr = car.getMarca();
             sell.add(new Venta(vs, cl, pr, mr));
             JOptionPane.showMessageDialog(null, "Venta hecha");
-             File file = null;
-        FileWriter fr = null;
-        BufferedWriter br = null;
-        try {
-            file= new File("./Ventas.txt");
-            fr= new FileWriter(file,true);
-            br= new BufferedWriter(fr);
-            String mike= "[\n"
-                    +"\t"+cl+"\n"
-                    +"\t"+vs+"\n"  
-                    +"\t"+mr+"\n"  
-                    +"\t"+vs+"\n];\n";
-            br.write(mike);
-            br.flush();
-            fr.close();
-            br.close();
-            
-        } catch (Exception e) {
-        e.printStackTrace();
+            File file = null;
+            FileWriter fr = null;
+            BufferedWriter br = null;
+            try {
+                file = new File("./Ventas.txt");
+                fr = new FileWriter(file, true);
+                br = new BufferedWriter(fr);
+                String mike = "[\n"
+                        + "\t" + cl + "\n"
+                        + "\t" + vs + "\n"
+                        + "\t" + mr + "\n"
+                        + "\t" + vs + "\n];\n";
+                br.write(mike);
+                br.flush();
+                fr.close();
+                br.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Papo");
         }
-            
-        }else{
-             JOptionPane.showMessageDialog(null, "Papo");
-         }
-            
-            
+
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void FinalizarDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarDMouseClicked
-       File file = null;
+        File file = null;
         FileWriter fr = null;
         BufferedWriter br = null;
-        String path="./Actividades/";
-        path+= JOptionPane.showInputDialog("Ingrese el nombre: ");
-        path+=".txt";
-        int cont=1;
+        String path = "./Actividades/";
+        path += JOptionPane.showInputDialog("Ingrese el nombre: ");
+        path += ".txt";
+        int cont = 1;
         try {
-             
-            file= new File(path);
-            fr= new FileWriter(file,true);
-            br= new BufferedWriter(fr);
-            String mike= "";
+
+            file = new File(path);
+            fr = new FileWriter(file, true);
+            br = new BufferedWriter(fr);
+            String mike = "";
             for (Venta vst : sell) {
-               mike= "[\n"
-                        +"\t"+cont+"\n"
-                    +"\t"+vst.getCarro()+"\n"
-                    +"\t"+vst.getVendedor1()+"\n"  
-                    +"\t"+vst.getComprador1()+"\n"  
-                    +"\t"+vst.getCostotrans()+"\n];\n";
-           
-               cont++;
-           }
-            
+                mike = "[\n"
+                        + "\t" + cont + "\n"
+                        + "\t" + vst.getCarro() + "\n"
+                        + "\t" + vst.getVendedor1() + "\n"
+                        + "\t" + vst.getComprador1() + "\n"
+                        + "\t" + vst.getCostotrans() + "\n];\n";
+
+                cont++;
+            }
+
             br.write(mike);
             br.flush();
             fr.close();
             br.close();
             sell.clear();
-            
+
         } catch (Exception e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }//GEN-LAST:event_FinalizarDMouseClicked
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseClicked
-        
+
     }//GEN-LAST:event_ConfirmMouseClicked
 
     private void EditJsonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditJsonMouseClicked
-       Edit.setModal(true);
-        Edit.pack();
-        Edit.setLocationRelativeTo(this);
+        try {
+            JFileChooser jfc = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de TXT", ".txt");
+            jfc.setFileFilter(filter);
 
-        Edit.setVisible(true);
+            FileReader fr = null;
+            BufferedReader br = null;
+            int sele = jfc.showOpenDialog(this);
+            if (sele == JFileChooser.APPROVE_OPTION) {
+                ar = jfc.getSelectedFile();
+                fr = new FileReader(ar);
+                br = new BufferedReader(fr);
+                String L;
+                jTextArea1.setText("");
+                while ((L = br.readLine()) != null) {
+                    jTextArea1.append(L);
+                    jTextArea1.append("\n");
+
+                }
+                Edit.setModal(true);
+                Edit.pack();
+                Edit.setLocationRelativeTo(this);
+
+                Edit.setVisible(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_EditJsonMouseClicked
 
     private void UPTREEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UPTREEMouseClicked
@@ -921,40 +935,33 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ADMINUTMouseClicked
 
-    
-    
-    
-    
-    public DefaultComboBoxModel updateComboboxCAR(){
+    public DefaultComboBoxModel updateComboboxCAR() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
-            for (Vehiculo Cars : cars) {
-                model.addElement(Cars);
+        for (Vehiculo Cars : cars) {
+            model.addElement(Cars);
 
-            }
-    return model;
+        }
+        return model;
     }
-    
-     public DefaultComboBoxModel updateComboboxCliente(){
+
+    public DefaultComboBoxModel updateComboboxCliente() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
-            for (Cliente c : client) {
-                model.addElement(c);
+        for (Cliente c : client) {
+            model.addElement(c);
 
-            }
-    return model;
+        }
+        return model;
     }
-     
-     
-      public DefaultComboBoxModel updateComboboxV(){
+
+    public DefaultComboBoxModel updateComboboxV() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
-            for (Vendedor v : seller) {
-                model.addElement(v);
+        for (Vendedor v : seller) {
+            model.addElement(v);
 
-            }
-    return model;
+        }
+        return model;
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
