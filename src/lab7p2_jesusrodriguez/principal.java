@@ -897,7 +897,7 @@ public class principal extends javax.swing.JFrame {
     private void EditJsonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditJsonMouseClicked
         try {
             JFileChooser jfc = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de TXT", ".txt");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de TXT", "txt");
             jfc.setFileFilter(filter);
 
             FileReader fr = null;
