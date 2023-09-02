@@ -1,6 +1,0 @@
-[
-	Mike
-	Mike
-	Luigi
-	99.0
-]

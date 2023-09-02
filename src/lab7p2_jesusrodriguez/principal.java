@@ -904,10 +904,12 @@ public class principal extends javax.swing.JFrame {
                 bw.flush();
                 fw.close();
                 bw.close();
+               
                 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            Edit.setVisible(false);
         }
     }//GEN-LAST:event_ConfirmMouseClicked
 
