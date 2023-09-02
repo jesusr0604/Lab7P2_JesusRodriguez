@@ -10,12 +10,14 @@ private String vendedor1;
 private String comprador1;
 private double costotrans;
 private String carro;
+private int a;
 
-    public Venta(String vendedor1, String comprador1, double costotrans, String carro) {
+    public Venta(String vendedor1, String comprador1, double costotrans, String carro,int a) {
         this.vendedor1 = vendedor1;
         this.comprador1 = comprador1;
         this.costotrans = costotrans;
         this.carro = carro;
+        this.a= a;
     }
 
     public Venta() {
@@ -52,6 +54,16 @@ private String carro;
     public void setCarro(String carro) {
         this.carro = carro;
     }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+    
+    
 
     @Override
     public String toString() {

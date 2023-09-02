@@ -551,6 +551,11 @@ public class principal extends javax.swing.JFrame {
                 UPTREEMouseClicked(evt);
             }
         });
+        UPTREE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UPTREEActionPerformed(evt);
+            }
+        });
 
         ADMINUT.setText("Actualizar Arbol Del Admin");
         ADMINUT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -830,7 +835,8 @@ public class principal extends javax.swing.JFrame {
             String vs = vendedors.getNombre();
             double pr = car.getPrecio();
             String mr = car.getMarca();
-            sell.add(new Venta(vs, cl, pr, mr));
+            int co= car.getId();
+            sell.add(new Venta(vs, cl, pr, mr,co));
             JOptionPane.showMessageDialog(null, "Venta hecha");
             File file = null;
             FileWriter fr = null;
@@ -880,6 +886,7 @@ public class principal extends javax.swing.JFrame {
                         + "\t" + vst.getCarro() + "\n"
                         + "\t" + vst.getVendedor1() + "\n"
                         + "\t" + vst.getComprador1() + "\n"
+                        + "\t" + vst.getA() + "\n"
                         + "\t" + vst.getCostotrans() + "\n];\n";
 
                 cont++;
@@ -950,12 +957,17 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_EditJsonMouseClicked
 
     private void UPTREEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UPTREEMouseClicked
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_UPTREEMouseClicked
 
     private void ADMINUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADMINUTMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_ADMINUTMouseClicked
+
+    private void UPTREEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPTREEActionPerformed
+      int selec= 0;
+      
+    }//GEN-LAST:event_UPTREEActionPerformed
 
     public DefaultComboBoxModel updateComboboxCAR() {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
@@ -1045,13 +1057,14 @@ public class principal extends javax.swing.JFrame {
             File file= new File ("./Ventas.txt");
             ArrayList<ArrayList<String>>Listas= obtenerlista(file);
             for (ArrayList<String> t : Listas) {
-                if (t.size()==4) {
+                if (t.size()==5) {
                     String Vendedor= t.get(0).replace(",", "");
                     String comprador = t.get(1).replace(",", "");
                  
                     double Costo= Double.parseDouble(t.get(2).replace(",", ""));
                     String Car= t.get(3).replace(",", "");
-                    sell.add(new Venta(Vendedor,comprador,Costo,Car));
+                    int as=Integer.parseInt(t.get(4).replace(",", ""));
+                    sell.add(new Venta(Vendedor,comprador,Costo,Car,as));
                     
                 }
             }
@@ -1105,6 +1118,9 @@ public class principal extends javax.swing.JFrame {
         }
       }
     
+      
+      
+     
    
 
     /**
