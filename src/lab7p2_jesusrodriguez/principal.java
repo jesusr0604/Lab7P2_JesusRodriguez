@@ -17,6 +17,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -957,7 +959,40 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_EditJsonMouseClicked
 
     private void UPTREEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UPTREEMouseClicked
-       
+        modelotree();
+        DefaultTreeModel modelo= (DefaultTreeModel) jTree1.getModel();
+        DefaultMutableTreeNode root= (DefaultMutableTreeNode) modelo.getRoot();
+        try {
+            JFileChooser j= new JFileChooser("./Actividades");
+            FileNameExtensionFilter filtro= new FileNameExtensionFilter("Archivo", "txt");
+            j.setFileFilter(filtro);
+            File file= null;
+            FileReader fr = null;
+            BufferedReader br = null;
+            int sl= j.showOpenDialog(this);
+            if (sl== JFileChooser.APPROVE_OPTION) {
+                file= j.getSelectedFile();
+                ArrayList<ArrayList<String>> list= obtenerlista(file);
+                for (ArrayList<String>t:list) {
+                    if (t.size()==5) {
+                        DefaultMutableTreeNode a = new DefaultMutableTreeNode(t.get(0).replace(",", ""));
+                        DefaultMutableTreeNode b = new DefaultMutableTreeNode(t.get(1).replace(",", ""));
+                        DefaultMutableTreeNode c = new DefaultMutableTreeNode(t.get(2).replace(",", ""));
+                        DefaultMutableTreeNode d = new DefaultMutableTreeNode(t.get(3).replace(",", ""));
+                        DefaultMutableTreeNode e = new DefaultMutableTreeNode(t.get(4).replace(",", ""));
+                        ((DefaultMutableTreeNode)root.getChildAt(0)).add(a);
+                        a.add(b);
+                        a.add(c);
+                        a.add(d);
+                        a.add(e);
+                    }
+                }modelo.reload();
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_UPTREEMouseClicked
 
     private void ADMINUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADMINUTMouseClicked
@@ -1118,6 +1153,15 @@ public class principal extends javax.swing.JFrame {
         }
       }
     
+      public void modelotree(){
+          DefaultMutableTreeNode tree1= new javax.swing.tree.DefaultMutableTreeNode("dia");
+          DefaultMutableTreeNode tree2= new javax.swing.tree.DefaultMutableTreeNode("Venta");
+          tree1.add(tree2);
+          jTree1.setModel(new javax.swing.tree.DefaultTreeModel(tree1));
+          
+      }
+      
+      
       
       
      
