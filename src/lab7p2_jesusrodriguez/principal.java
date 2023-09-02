@@ -34,7 +34,10 @@ public class principal extends javax.swing.JFrame {
 
     public principal() {
         initComponents();
-        //inicListacar();
+        inicListacar();
+        inicListaCL();
+        inicListaVende();
+        inicListaVenta();
         
     }
 
@@ -606,16 +609,16 @@ public class principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(31, 31, 31)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(17, 17, 17)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1021,12 +1024,12 @@ public class principal extends javax.swing.JFrame {
             ArrayList<ArrayList<String>>Listas= obtenerlista(file);
             for (ArrayList<String> t : Listas) {
                 if (t.size()==6) {
-                    String marca= t.get(0);
-                    String color = t.get(1);
-                    String modelo= t.get(2);
-                    String año = String.valueOf(t.get(3));
-                    int id= Integer.parseInt(t.get(4));
-                    double pr= Double.parseDouble(t.get(5));
+                    String marca= t.get(0).replace(",", "");
+                    String color = t.get(1).replace(",", "");
+                    String modelo= t.get(2).replace(",", "");
+                    String año = String.valueOf(t.get(3).replace(",", ""));
+                    int id= Integer.parseInt(t.get(4).replace(",", ""));
+                    double pr= Double.parseDouble(t.get(5).replace(",", ""));
                     cars.add(new Vehiculo(marca, color, modelo, año, pr, id));
                     
                 }
@@ -1042,12 +1045,12 @@ public class principal extends javax.swing.JFrame {
             File file= new File ("./Ventas.txt");
             ArrayList<ArrayList<String>>Listas= obtenerlista(file);
             for (ArrayList<String> t : Listas) {
-                if (t.size()==5) {
-                    String Vendedor= t.get(0);
-                    String comprador = t.get(1);
+                if (t.size()==4) {
+                    String Vendedor= t.get(0).replace(",", "");
+                    String comprador = t.get(1).replace(",", "");
                  
-                    double Costo= Double.parseDouble(t.get(2));
-                    String Car= t.get(3);
+                    double Costo= Double.parseDouble(t.get(2).replace(",", ""));
+                    String Car= t.get(3).replace(",", "");
                     sell.add(new Venta(Vendedor,comprador,Costo,Car));
                     
                 }
@@ -1064,10 +1067,10 @@ public class principal extends javax.swing.JFrame {
             ArrayList<ArrayList<String>>Listas= obtenerlista(file);
             for (ArrayList<String> t : Listas) {
                 if (t.size()==3) {
-                    String Vendedor= t.get(0);
-                    int can= Integer.parseInt(t.get(1));
+                    String Vendedor= t.get(0).replace(",", "");
+                    int can= Integer.parseInt(t.get(1).replace(",", ""));
                  
-                    double generado= Double.parseDouble(t.get(2));
+                    double generado= Double.parseDouble(t.get(2).replace(",", ""));
                   
                     seller.add(new Vendedor(Vendedor,can,generado));
                     
@@ -1086,12 +1089,12 @@ public class principal extends javax.swing.JFrame {
             ArrayList<ArrayList<String>>Listas= obtenerlista(file);
             for (ArrayList<String> t : Listas) {
                 if (t.size()==5) {
-                    String nombre= t.get(0);
+                    String nombre= t.get(0).replace(",", "");
                     int edad= Integer.parseInt(t.get(1));
                  
                     String prof= t.get(2);
-                    int carros= Integer.parseInt(t.get(3));
-                    double sueldo= Double.parseDouble(t.get(4));
+                    int carros= Integer.parseInt(t.get(3).replace(",", ""));
+                    double sueldo= Double.parseDouble(t.get(4).replace(",", ""));
                   
                     client.add(new Cliente(nombre,edad,prof,carros,sueldo));
                     
