@@ -34,6 +34,8 @@ public class principal extends javax.swing.JFrame {
 
     public principal() {
         initComponents();
+        //inicListacar();
+        
     }
 
     /**
@@ -1033,20 +1035,72 @@ public class principal extends javax.swing.JFrame {
     }
     
     
-    public void ListasVehiculo(){
-        ArrayList<ArrayList<Vehiculo>> ArreglosV= new ArrayList();
-        
+     public void inicListaVenta(){
+        try{
+            File file= new File ("./Ventas.txt");
+            ArrayList<ArrayList<String>>Listas= obtenerlista(file);
+            for (ArrayList<String> t : Listas) {
+                if (t.size()==5) {
+                    String Vendedor= t.get(0);
+                    String comprador = t.get(1);
+                 
+                    double Costo= Double.parseDouble(t.get(2));
+                    String Car= t.get(3);
+                    sell.add(new Venta(Vendedor,comprador,Costo,Car));
+                    
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
-     public void ListasCliente(){
-        ArrayList<ArrayList<Cliente>> ArreglosCL= new ArrayList();
-        
-    }
      
-      public void ListasVendedor(){
-        ArrayList<ArrayList<Vendedor>> ArreglosVE= new ArrayList();
+     public void inicListaVende(){
+        try{
+            File file= new File ("./Vendedores.txt");
+            ArrayList<ArrayList<String>>Listas= obtenerlista(file);
+            for (ArrayList<String> t : Listas) {
+                if (t.size()==3) {
+                    String Vendedor= t.get(0);
+                    int can= Integer.parseInt(t.get(1));
+                 
+                    double generado= Double.parseDouble(t.get(2));
+                  
+                    seller.add(new Vendedor(Vendedor,can,generado));
+                    
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
         
     }
+      public void inicListaCL(){
+        try{
+            File file= new File ("./Clientes.txt");
+            ArrayList<ArrayList<String>>Listas= obtenerlista(file);
+            for (ArrayList<String> t : Listas) {
+                if (t.size()==5) {
+                    String nombre= t.get(0);
+                    int edad= Integer.parseInt(t.get(1));
+                 
+                    String prof= t.get(2);
+                    int carros= Integer.parseInt(t.get(3));
+                    double sueldo= Double.parseDouble(t.get(4));
+                  
+                    client.add(new Cliente(nombre,edad,prof,carros,sueldo));
+                    
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+      }
+    
+   
 
     /**
      * @param args the command line arguments
