@@ -539,8 +539,18 @@ public class principal extends javax.swing.JFrame {
         });
 
         UPTREE.setText("Actualizar Arbol");
+        UPTREE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UPTREEMouseClicked(evt);
+            }
+        });
 
         ADMINUT.setText("Actualizar Arbol Del Admin");
+        ADMINUT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ADMINUTMouseClicked(evt);
+            }
+        });
 
         EditJson.setText("Editar JSON");
         EditJson.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -699,7 +709,7 @@ public class principal extends javax.swing.JFrame {
                     +"\t"+marca+"\n"
                     +"\t"+modelo+"\n"
                     +"\t"+year+"\n"
-                    +"\t"+price+"\n]\n";
+                    +"\t"+price+"\n];\n";
             br.write(mike);
             br.flush();
             fr.close();
@@ -751,7 +761,7 @@ public class principal extends javax.swing.JFrame {
                     +"\t"+old+"\n"
                     +"\t"+prof+"\n"
                     +"\t"+cars+"\n"
-                    +"\t"+sueldo+"\n]\n";
+                    +"\t"+sueldo+"\n];\n";
             br.write(mike);
             br.flush();
             fr.close();
@@ -797,7 +807,7 @@ public class principal extends javax.swing.JFrame {
             String mike= "[\n"
                     +"\t"+Nombre+"\n"
                     +"\t"+cantidad+"\n"  
-                    +"\t"+dinero+"\n]\n";
+                    +"\t"+dinero+"\n];\n";
             br.write(mike);
             br.flush();
             fr.close();
@@ -838,7 +848,7 @@ public class principal extends javax.swing.JFrame {
                     +"\t"+cl+"\n"
                     +"\t"+vs+"\n"  
                     +"\t"+mr+"\n"  
-                    +"\t"+vs+"\n]\n";
+                    +"\t"+vs+"\n];\n";
             br.write(mike);
             br.flush();
             fr.close();
@@ -875,7 +885,7 @@ public class principal extends javax.swing.JFrame {
                     +"\t"+vst.getCarro()+"\n"
                     +"\t"+vst.getVendedor1()+"\n"  
                     +"\t"+vst.getComprador1()+"\n"  
-                    +"\t"+vst.getCostotrans()+"\n]\n";
+                    +"\t"+vst.getCostotrans()+"\n];\n";
            
                cont++;
            }
@@ -902,6 +912,14 @@ public class principal extends javax.swing.JFrame {
 
         Edit.setVisible(true);
     }//GEN-LAST:event_EditJsonMouseClicked
+
+    private void UPTREEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UPTREEMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UPTREEMouseClicked
+
+    private void ADMINUTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADMINUTMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ADMINUTMouseClicked
 
     
     
